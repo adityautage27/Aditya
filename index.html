@@ -3,376 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya M. Utage | Captain's Log Portfolio</title>
+    <title>Straw Hat Gallery | Traditional Anime Art</title>
     <style>
-        :root {
-            --bg-ocean: #0a0e14;
-            --parchment: #181d26;
-            --parchment-border: #2a3444;
-            --gold-bounty: #e5a93b;
-            --marine-red: #ff3e3e;
-            --text-light: #f1f5f9;
-            --text-dark: #94a3b8;
-        }
-
+        /* Smooth Global Styles & Dark Theme */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Impact', 'Arial Black', system-ui, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-
         body {
-            background-color: var(--bg-ocean);
-            color: var(--text-light);
+            background-color: #0d0f12;
+            color: #f5f6f7;
             overflow-x: hidden;
-            /* Nautical Topography Grid Pattern */
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(229, 169, 59, 0.02) 0%, transparent 60%),
-                radial-gradient(circle at 90% 10%, rgba(255, 62, 62, 0.03) 0%, transparent 40%);
-            padding: 4rem 2rem;
+            scroll-behavior: smooth;
         }
-
-        .wrapper {
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-
-        /* Straw Hat Inspired Header */
+        /* Header / Banner */
         header {
+            background: linear-gradient(rgba(13, 15, 18, 0.85), #0d0f12), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920') no-repeat center center/cover;
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 6rem;
-            position: relative;
-            animation: emerge 1s cubic-bezier(0.16, 1, 0.3, 1);
+            border-bottom: 2px solid #b38f4f;
         }
-
-        .pirate-flag {
-            font-size: 0.85rem;
-            color: var(--gold-bounty);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-family: 'Courier New', monospace;
-        }
-
         header h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            letter-spacing: 0.02em;
+            font-size: 2.5rem;
+            color: #b38f4f;
             text-transform: uppercase;
-            color: var(--text-light);
-            text-shadow: 3px 3px 0px var(--marine-red);
-            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0px 4px 10px rgba(179, 143, 79, 0.3);
         }
-
-        header h1 span {
-            color: var(--gold-bounty);
-            text-shadow: 3px 3px 0px #000;
-        }
-
         header p {
-            font-family: 'Courier New', monospace;
-            color: var(--text-dark);
+            color: #8a99ad;
             font-size: 1.1rem;
-            max-width: 650px;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
-        /* Log Pose / Arc Dividers */
-        .island-divider {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gold-bounty);
-            margin: 5rem 0 2.5rem 0;
+        /* Gallery Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            justify-content: center;
+        }
+
+        /* Smooth Wanted Poster UI Card */
+        .poster-card {
+            background: #1a1d24;
+            border: 1px solid #2d323f;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+        }
+        .poster-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(179, 143, 79, 0.2);
+            border-color: #b38f4f;
+        }
+
+        /* Image Display Area */
+        .image-container {
+            width: 100%;
+            height: 350px;
+            background: #252a35;
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-        }
-
-        .island-divider::before {
-            content: '⚓';
-            font-size: 1.3rem;
-        }
-
-        .island-divider::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold-bounty), rgba(42, 52, 68, 0.5), transparent);
-        }
-
-        /* Bounty Board Grid Layout */
-        .bounty-board {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-            gap: 3.5rem;
-        }
-
-        /* Wanted Poster Styled Cards */
-        .wanted-poster {
-            background: var(--parchment);
-            border: 2px solid var(--parchment-border);
-            border-radius: 8px;
+            justify-content: center;
             overflow: hidden;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border-bottom: 2px solid #2d323f;
         }
-
-        .wanted-poster:hover {
-            transform: translateY(-8px) rotate(1deg);
-            border-color: var(--gold-bounty);
-            box-shadow: 0 25px 50px -12px rgba(229, 169, 59, 0.2);
-        }
-
-        /* 9:16 Video Canvas */
-        .video-canvas {
-            position: relative;
-            width: 100%;
-            padding-top: 177.78%;
-            background: #03060a;
-            border-bottom: 2px solid var(--parchment-border);
-        }
-
-        .video-canvas iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* 1:1 Art Frame for Sketches */
-        .art-canvas {
-            position: relative;
-            width: 100%;
-            padding-top: 110%;
-            background: #03060a;
-            overflow: hidden;
-            border-bottom: 2px solid var(--parchment-border);
-        }
-
-        .art-canvas img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+        }
+        /* Style for when you haven't uploaded a photo yet */
+        .placeholder-text {
+            color: #5a6578;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
         }
 
-        .wanted-poster:hover .art-canvas img {
-            transform: scale(1.03);
-        }
-
+        /* Poster Info / Text */
         .poster-details {
-            padding: 2rem 1.5rem;
+            padding: 20px;
             text-align: center;
+            background: linear-gradient(to top, #13161c, #1a1d24);
         }
-
-        .poster-details h3 {
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            text-shadow: 1px 1px 0px #000;
-        }
-
-        .poster-details p {
-            font-family: 'Courier New', monospace;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .bounty-tag {
-            font-size: 1.3rem;
-            color: var(--gold-bounty);
-            letter-spacing: 0.05em;
+        .wanted-tag {
+            color: #e63946;
+            font-size: 0.8rem;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .character-name {
+            font-size: 1.5rem;
+            color: #f5f6f7;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .bounty {
+            color: #b38f4f;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        /* Observation Log Block (LinkedIn) */
-        .log-parchment {
-            background: #131720;
-            border: 1px dashed var(--parchment-border);
-            padding: 2.5rem;
-            border-radius: 6px;
-            position: relative;
+        /* Future Art Strategy Section */
+        .about-art {
+            background: #161920;
+            border-left: 4px solid #b38f4f;
+            padding: 30px;
+            margin-top: 60px;
+            border-radius: 0 12px 12px 0;
         }
-
-        .log-parchment blockquote {
-            font-family: 'Courier New', monospace;
-            font-size: 1.15rem;
-            color: #e2e8f0;
+        .about-art h3 {
+            color: #b38f4f;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .about-art p {
+            color: #a0aec0;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
-        /* The Grand Fleet Call to Action */
-        .join-crew-panel {
-            border: 2px solid var(--gold-bounty);
-            background: radial-gradient(circle at 50% 0%, rgba(229, 169, 59, 0.05) 0%, transparent 70%), var(--parchment);
-            padding: 4.5rem 2rem;
-            margin-top: 6rem;
-            text-align: center;
-            border-radius: 12px;
-        }
-
-        .join-crew-panel h2 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 0px #000;
-        }
-
-        .join-crew-panel p {
-            font-family: 'Courier New', monospace;
-            color: var(--text-dark);
-            max-width: 500px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .btn-pirate {
-            display: inline-block;
-            background: var(--gold-bounty);
-            color: #000;
-            padding: 1.1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            border-radius: 4px;
-            box-shadow: 0 4px 0px #b27b1c;
-            transition: all 0.2s ease;
-            margin: 0.5rem;
-        }
-
-        .btn-pirate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0px #b27b1c, 0 10px 20px rgba(229,169,59,0.3);
-            background: #ffbc42;
-        }
-
-        .btn-pirate.marine {
-            background: transparent;
-            color: var(--marine-red);
-            border: 2px solid var(--marine-red);
-            box-shadow: none;
-        }
-
-        .btn-pirate.marine:hover {
-            background: var(--marine-red);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(255, 62, 62, 0.4);
-        }
-
-        @keyframes emerge {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 2rem 1rem; }
-            header h1 { font-size: 2.75rem; }
-            .bounty-board { gap: 2rem; }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .grid { gap: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        
-        <header>
-            <div class="pirate-flag">‍☠️ LOG POSE: SET TO THE GRAND LINE</div>
-            <h1>ADITYA M. <span>UTAGE</span></h1>
-            <p>Video Editor & Captain of Anime Illustrations. Cutting high-retention typography reels that hook viewers instantly, and drawing custom high-bounty commissions.</p>
-        </header>
+    <header>
+        <h1>Straw Hat Chronicle</h1>
+        <p>A traditional sketch archive dedicated to the crew. Hand-drawn pencil concepts evolving soon into vibrant alcohol marker masterpieces.</p>
+    </header>
 
-        <main>
+    <div class="container">
+        <div class="grid">
 
-            <!-- LOG 01: THE JOURNEY -->
-            <h2 class="island-divider">01 // The Journey Log</h2>
-            <div class="bounty-board">
-                <div class="wanted-poster">
-                    <div class="video-canvas">
-                        <!-- Swap with your Journey Video Preview link from Google Drive -->
-                        <iframe src="https://drive.google.com/file/d/PLACEHOLDER_ID_1/preview" allowfullscreen></iframe>
-                    </div>
-                    <div class="poster-details">
-                        <h3>ARC LOG: COMPOUNDING</h3>
-                        <p>Documenting daily growth, editing pacing systems, and visual mechanics as a solo creator routing through the creative seas.</p>
-                        <div class="bounty-tag">REWARD: CONTINUOUS WATCHTIME</div>
-                    </div>
+            <!-- LUFFY -->
+            <div class="poster-card">
+                <div class="image-container">
+                    <!-- Replace the URL in src="" with your sketch link later! -->
+                    <div class="placeholder-text">[ Drop your Pencil Sketch of Luffy Here ]</div>
+                </div>
+                <div class="poster-details">
+                    <div class="wanted-tag">Wanted • Dead or Alive</div>
+                    <div class="character-name">Monkey D. Luffy</div>
+                    <div class="bounty">3,000,000,000 ฿</div>
                 </div>
             </div>
 
-            <!-- LOG 02: VIDEO ARCHITECTURE -->
-            <h2 class="island-divider">02 // Video Commissions</h2>
-            <div class="bounty-board">
-                <!-- Paid Client Reel Card -->
-                <div class="wanted-poster">
-                    <div class="video-canvas">
-                        <!-- Swap with your Client Video Preview link from Google Drive -->
-                        <iframe src="https://drive.google.com/file/d/PLACEHOLDER_ID_2/preview" allowfullscreen></iframe>
-                    </div>
-                    <div class="poster-details">
-                        <h3>KINETIC TYPOGRAPHY</h3>
-                        <p>High-tempo text synchronization paired with deliberate dynamic cuts and background mastering engineered to maximize scroll-depth retention.</p>
-                        <div class="bounty-tag">BOUNTY: ฿ 200,000</div>
-                    </div>
+            <!-- ZORO -->
+            <div class="poster-card">
+                <div class="image-container">
+                    <div class="placeholder-text">[ Drop your Pencil Sketch of Zoro Here ]</div>
+                </div>
+                <div class="poster-details">
+                    <div class="wanted-tag">Wanted • Dead or Alive</div>
+                    <div class="character-name">Roronoa Zoro</div>
+                    <div class="bounty">1,111,000,000 ฿</div>
                 </div>
             </div>
 
-            <!-- LOG 03: ANIME COMMISSIONS -->
-            <h2 class="island-divider" style="color: var(--marine-red);">03 // Wanted: Anime Art Illustrations</h2>
-            <div class="bounty-board">
-                
-                <!-- Anime Drawing Card 1 -->
-                <div class="wanted-poster" style="border-color: rgba(255, 62, 62, 0.3);">
-                    <div class="art-canvas">
-                        <!-- Swap with your formatted Google Drive drawing link -->
-                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600" alt="Anime Drawing Canvas">
-                    </div>
-                    <div class="poster-details">
-                        <h3 style="color: var(--gold-bounty);">COMMISSIONS OPEN</h3>
-                        <p>Traditional clean line weights, sharp perspective layouts, and ink-style shading setups. Specializing strictly in custom character canvas art.</p>
-                        <div class="bounty-tag" style="color: var(--marine-red);">WANTED DEAD OR ALIVE</div>
-                    </div>
+            <!-- SANJI -->
+            <div class="poster-card">
+                <div class="image-container">
+                    <div class="placeholder-text">[ Drop your Pencil Sketch of Sanji Here ]</div>
                 </div>
-
+                <div class="poster-details">
+                    <div class="wanted-tag">Wanted • Only Alive</div>
+                    <div class="character-name">Vinsmoke Sanji</div>
+                    <div class="bounty">1,032,000,000 ฿</div>
+                </div>
             </div>
 
-            <!-- LOG 04: OBSERVATIONS (LINKEDIN) -->
-            <h2 class="island-divider">04 // Navigating Strategy</h2>
-            <div class="log-parchment">
-                <blockquote>
-                    "Execution strips away the romanticism of the goal. The difference between a high-retention hook and a flat layout comes down to the sub-frame details."
-                </blockquote>
-                <p style="color: var(--gold-bounty); font-family: 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 0.1em;">// EXTRACTED FROM CAPTAIN'S LOG: LINKEDIN POSTS</p>
-            </div>
+        </div>
 
-            <!-- THE GRAND FLEET CALL TO ACTION -->
-            <section class="join-crew-panel">
-                <h2>Join The Crew</h2>
-                <p>Ready to deploy specialized high-tempo kinetic video pacing, or request a custom anime bounty drawing commission?</p>
-                <div class="action-button-group">
-                    <a href="mailto:your.email@gmail.com?subject=Anime%20Bounty%20Commission" class="btn-pirate">Order Anime Art</a>
-                    <a href="mailto:your.email@gmail.com?subject=Video%20Editing%20Contract" class="btn-pirate marine">Commission an Edit</a>
-                </div>
-            </section>
-
-        </main>
+        <!-- Artistic Roadmap block -->
+        <div class="about-art">
+            <h3>🎨 The Creative Log</h3>
+            <p>Every piece currently showcased begins raw on paper with deep graphite pencil grading, shading, and precise line structures. The vision ahead? Transitioning these complex linework arrays into ultra-smooth blending profiles using professional alcohol-based markers once the Treasury grows.</p>
+        </div>
     </div>
 
 </body>
 </html>
-
